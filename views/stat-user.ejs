@@ -1,0 +1,56 @@
+
+<!-- total -->
+<div class="total">
+  <h2>Tổng số người dùng:</h2>
+  <h1>999,999,999</h1>
+</div>
+
+<div>
+  <form action="">
+    Số lượt đăng ký mới theo:
+    <select class="custom-select time-select">
+      <option value="day">Ngày</option>
+      <option value="month" selected>Tháng</option>
+      <option value="year">Năm</option>
+    </select>
+    <button type="submit" class="btn btn-primary">Lọc</button>
+  </form>
+</div>
+
+<!-- chart -->
+<canvas id="chart"></canvas>
+
+<hr>
+
+<!-- table -->
+<p>Bảng số liệu:</p>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">Thời gian</th>
+      <th scope="col">Số lượt đăng ký mới</th>
+      <th scope="col">Tổng số người dùng</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>01/2020</td>
+      <td>1,000</td>
+      <td>999,999,999</td>
+    </tr>
+    <tr>
+      <td>02/2020</td>
+      <td>1,000</td>
+      <td>999,999,999</td>
+    </tr>
+    <tr>
+      <td>03/2020</td>
+      <td>1,000</td>
+      <td>999,999,999</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- My script for chart -->
+<script src="javascripts/chart.js"></script>

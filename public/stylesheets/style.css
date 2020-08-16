@@ -1,0 +1,62 @@
+/* colors: ligh-tblue: rgb(110, 110, 255), brown: rgb(33, 37, 41), light-brown: rgb(144, 146, 148)  */
+
+a {
+  color: #00B7FF;
+}
+
+/* ========== AUTH PAGE ========== */
+.auth-header {
+  text-align: center;
+}
+
+/* ========== NAVBAR ========== */
+.admin-name {
+  color: white;
+}
+
+/* ========== SIDEBAR ========== */
+.stat-menu {
+  background-color: rgb(33, 37, 41);
+}
+
+.stat-item {
+  color: rgb(144, 146, 148);
+}
+
+/* ========== HOME PAGE ========== */
+.home-page {
+  text-align: center;
+  margin-top: 200px;
+}
+
+.home-page i {
+  color: rgb(110, 110, 255);
+}
+
+/* ========== TABLE ========== */
+td {
+  color: blue;
+}
+
+/* ========== STAT PAGE ========== */
+.total {
+  text-align: center;
+}
+
+.total h1 {
+  color: rgb(110, 110, 255);
+}
+
+.time-select {
+  width: 100px;
+}
+
+/* ========== INFO PAGE ========== */
+.info-icon {
+  color: rgb(110, 110, 255);
+  margin-bottom: 3%;
+}
+
+.info-btn {
+  margin-top: 3%;
+}

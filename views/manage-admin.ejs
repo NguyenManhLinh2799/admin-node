@@ -1,0 +1,58 @@
+<h1>Quản lý Admin</h1>
+
+<hr>
+
+<table id="table" class="table table-bordered table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Mã số</th>
+      <th scope="col">Họ tên</th>
+      <th scope="col">Tên tài khoản</th>
+      <th scope="col">Email</th>
+      <th><a class="btn btn-primary" href="/create-admin" role="button">Tạo</a></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class='clickable-row' data-href='#'>
+      <td>1</td>
+      <td>Nguyễn Văn A</td>
+      <td>nva</td>
+      <td>nva@gmail.com</td>
+      <td><a class="btn btn-danger" href="#" role="button" data-toggle="modal" data-target="#logoutModal">Xóa</a></td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Nguyễn Thị B</td>
+      <td>ntb</td>
+      <td>ntb@gmail.com</td>
+      <td><a class="btn btn-danger" href="#" role="button">Xóa</a></td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Nguyễn Văn C</td>
+      <td>nvc</td>
+      <td>nvc@gmail.com</td>
+      <td><a class="btn btn-danger" href="#" role="button">Xóa</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- Remove Admin Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Bạn chuẩn bị xóa 1 Admin</h5>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">Bạn có chắc chắn muốn xóa Admin này không?</div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" type="button" data-dismiss="modal">Hủy bỏ</button>
+        <a class="btn btn-primary" href="#">Xác nhận</a>
+      </div>
+    </div>
+  </div>
+</div>
