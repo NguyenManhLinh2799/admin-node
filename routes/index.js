@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 
+const adminController = require('../controllers/admin-controller');
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index');
@@ -58,9 +60,7 @@ router.get('/info-user', (req, res) => {
 });
 
 // Admin manage
-router.get('/manage-admin', (req, res) => {
-  res.render('manage-admin');
-});
+router.get('/manage-admin', adminController.manageAdmin);
 
 // Create admin
 router.get('/create-admin', (req, res) => {

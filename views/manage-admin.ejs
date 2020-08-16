@@ -13,27 +13,15 @@
     </tr>
   </thead>
   <tbody>
-    <tr class='clickable-row' data-href='#'>
-      <td>1</td>
-      <td>Nguyễn Văn A</td>
-      <td>nva</td>
-      <td>nva@gmail.com</td>
+    <% for (var i = 0; i < admins.length; i++) { %>
+    <tr>
+      <td><%= admins[i].id %></td>
+      <td><%= admins[i].fullname %></td>
+      <td><%= admins[i].username %></td>
+      <td><%= admins[i].email %></td>
       <td><a class="btn btn-danger" href="#" role="button" data-toggle="modal" data-target="#logoutModal">Xóa</a></td>
     </tr>
-    <tr>
-      <td>2</td>
-      <td>Nguyễn Thị B</td>
-      <td>ntb</td>
-      <td>ntb@gmail.com</td>
-      <td><a class="btn btn-danger" href="#" role="button">Xóa</a></td>
-    </tr>
-    <tr>
-      <td>3</td>
-      <td>Nguyễn Văn C</td>
-      <td>nvc</td>
-      <td>nvc@gmail.com</td>
-      <td><a class="btn btn-danger" href="#" role="button">Xóa</a></td>
-    </tr>
+    <% } %>
   </tbody>
 </table>
 
