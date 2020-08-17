@@ -22,6 +22,13 @@ class Admin {
             values: [this.id]
         }
     }
+
+    static changeProfile(fullname, email, username) {
+        return {
+            text: 'UPDATE admin SET fullname = $1, email = $2 WHERE username = $3',
+            values: [fullname, email, username]
+        }
+    }
 }
 
 module.exports = Admin;
