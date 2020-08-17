@@ -1,4 +1,5 @@
-const client = require('../db/index');
+const client = require('../db');
+const passport = require('passport');
 
 // manage admin
 exports.manageAdmin = (req, res) => {
@@ -13,4 +14,19 @@ exports.manageAdmin = (req, res) => {
 		}
 		client.end();
 	});
+}
+
+// login
+exports.login = (req, res, next) => {
+    console.log(req.body);
+    passport.authenticate('local', {
+        successRedirect: '/',
+        failureRedirect: '/login',
+    })(req, res, next);
+}
+
+// logout
+exports.logout = (req, res) => {
+    req.logout();
+    res.redirect('/login');
 }

@@ -1,11 +1,11 @@
 var express = require('express');
 var router = express.Router();
-
+const { ensureAuthenticated } = require('../config/auth');
 const adminController = require('../controllers/admin-controller');
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index');
+router.get('/', ensureAuthenticated, function(req, res, next) {
+  res.render('index', { user: req.user });
 });
 
 // Profile page
@@ -18,10 +18,17 @@ router.get('/change-password', (req, res) => {
   res.render('change-password');
 });
 
+
+
 // Login
 router.get('/login', (req, res) => {
   res.render('login', { layout: 'auth-layout' });
 });
+
+// Login handle
+router.post('/login', adminController.login);
+
+
 
 // Forget password
 router.get('/forget-password', (req, res) => {
@@ -35,9 +42,7 @@ router.get('/reset-password', (req, res) => {
 
 
 // Logout
-router.get('/logout', (req, res) => {
-  res.redirect('/login');
-});
+router.get('/logout', adminController.logout);
 
 // User stat
 router.get('/stat-user', (req, res) => {

@@ -22,7 +22,7 @@
 
   <!-- Chart.js -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
-  
+
   <!-- jquery -->
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
@@ -43,13 +43,14 @@
 
     <!-- Navbar Search -->
     <div class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
-      <h6 class="admin-name">Nguyễn Mạnh Linh (Super Admin)</h6>
+      <h6 class="admin-name"><%= user.fullname %> <% if (user.issuper) { %>(Super Admin)<% } %></h6>
     </div>
 
     <!-- Navbar -->
     <ul class="navbar-nav ml-auto ml-md-0">
       <li class="nav-item dropdown no-arrow">
-        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
           <i class="fas fa-user-circle fa-fw"></i>
         </a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
@@ -70,7 +71,8 @@
     <!-- Sidebar -->
     <ul class="sidebar navbar-nav">
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
           <i class="fas fa-fw fa-chart-area"></i>
           <span>Thống kê</span>
         </a>
@@ -84,11 +86,13 @@
           <i class="fas fa-users-cog"></i>
           <span>Quản lý Người dùng</span></a>
       </li>
+      <% if (user.issuper) { %>
       <li class="nav-item">
         <a class="nav-link" href="/manage-admin">
           <i class="fas fa-cogs"></i>
           <span>Quản lý Admin</span></a>
       </li>
+      <% } %>
     </ul>
 
     <div id="content-wrapper">
@@ -121,7 +125,8 @@
   </a>
 
   <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
