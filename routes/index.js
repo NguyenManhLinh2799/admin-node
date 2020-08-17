@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 const { ensureAuthenticated } = require('../config/auth');
 const adminController = require('../controllers/admin-controller');
+const superAdminController = require('../controllers/super-admin-controller');
 
 /* GET home page. */
 router.get('/', ensureAuthenticated, function(req, res, next) {
@@ -9,9 +10,7 @@ router.get('/', ensureAuthenticated, function(req, res, next) {
 });
 
 // Profile page
-router.get('/profile', (req, res) => {
-  res.render('profile');
-});
+router.get('/profile', adminController.profile);
 
 // Change password
 router.get('/change-password', (req, res) => {
@@ -65,7 +64,7 @@ router.get('/info-user', (req, res) => {
 });
 
 // Admin manage
-router.get('/manage-admin', adminController.manageAdmin);
+router.get('/manage-admin', superAdminController.manageAdmin);
 
 // Create admin
 router.get('/create-admin', (req, res) => {

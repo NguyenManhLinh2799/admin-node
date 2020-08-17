@@ -4,36 +4,20 @@ client.connect();
 
 module.exports = (passport) => {
     passport.use(new LocalStrategy((username, password, cb) => {
-
         client.query('SELECT * FROM admin WHERE username = $1', [username], (err, result) => {
             if (err) {
-                //winston.error('Error when selecting user on login', err)
                 return cb(err)
+            } else {
+                const first = result.rows[0];
+                cb(null, {
+                    id: first.id,
+                    username: first.username,
+                    password: first.password,
+                    fullname: first.fullname,
+                    email: first.email,
+                    issuper: first.issuper
+                });
             }
-
-            // if (result.rows.length > 0) {
-            //     const first = result.rows[0]
-            //     bcrypt.compare(password, first.password, function (err, res) {
-            //         if (res) {
-            //             cb(null, { id: first.id, username: first.username, type: first.type })
-            //         } else {
-            //             cb(null, false)
-            //         }
-            //     })
-            // } else {
-            //     cb(null, false)
-            // }
-
-            const first = result.rows[0]
-            console.log(first);
-            cb(null, {
-                id: first.id,
-                username: first.username,
-                password: first.password,
-                fullname: first.fullname,
-                email: first.email,
-                issuper: first.issuper
-            });
         })
     }))
 
@@ -44,7 +28,6 @@ module.exports = (passport) => {
     passport.deserializeUser((id, cb) => {
         client.query('SELECT * FROM admin WHERE id = $1', [parseInt(id, 10)], (err, results) => {
             if (err) {
-                //winston.error('Error when selecting user on session deserialize', err)
                 return cb(err)
             }
 
