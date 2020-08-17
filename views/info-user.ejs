@@ -1,4 +1,4 @@
-<h1>Thông tin người dùng mã số: 1</h1>
+<h1>Thông tin người dùng mã số: <%= info.id %></h1>
 <hr>
 
 <div class="row">
@@ -27,19 +27,23 @@
   </div>
   <div class="col-2">
     <div class="row">
-      Nguyễn Văn A
+      <%= info.full_name %>
     </div>
     <div class="row">
-      nva
+      <%= info.username %>
     </div>
     <div class="row">
-      nva@gmail.com
+      <%= info.email %>
     </div>
     <div class="row">
       1,000
     </div>
     <div class="row">
+      <% if (info.isbanned == false) { %>
       Chưa khóa
+      <% } else { %>
+      Đã khóa
+      <% } %>
     </div>
   </div>
   <div class="col-4"></div>
@@ -48,10 +52,18 @@
 <div class="row info-btn">
   <div class="col-3"></div>
   <div class="col-3 text-center">
-    <a href="#" class="btn btn-primary btn-lg disabled" tabindex="-1" role="button" aria-disabled="true">Mở khóa</a>
+    <% if (info.isbanned == false) { %>
+      <a href="#" class="btn btn-primary btn-lg disabled" tabindex="-1" role="button" aria-disabled="true">Mở khóa</a>
+    <% } else { %>
+      <a href="#" class="btn btn-primary btn-lg" role="button">Mở khóa</a>
+    <% } %>
   </div>
   <div class="col-3 text-center">
-    <a href="#" class="btn btn-danger btn-lg" tabindex="-1" role="button" aria-disabled="true">Khóa</a>
+    <% if (info.isbanned == false) { %>
+      <a href="#" class="btn btn-danger btn-lg" role="button">Khóa</a>
+    <% } else { %>
+      <a href="#" class="btn btn-danger btn-lg disabled" tabindex="-1" role="button" aria-disabled="true">Khóa</a>
+    <% } %>
   </div>
   <div class="col-3"></div>
 </div>

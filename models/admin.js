@@ -42,6 +42,13 @@ class Admin {
             text: 'SELECT * FROM users',
         }
     }
+
+    static getUser(id) {
+        return {
+            text: 'SELECT * FROM users WHERE id = $1',
+            values: [parseInt(id, 10)]
+        }
+    }
 }
 
 module.exports = Admin;

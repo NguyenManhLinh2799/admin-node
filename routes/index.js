@@ -73,9 +73,7 @@ router.get('/stat-note', (req, res) => {
 router.get('/manage-user', adminController.manageUser);
 
 // User info
-router.get('/info-user', (req, res) => {
-  res.render('info-user');
-});
+router.get('/info-user/:id', adminController.userInfo);
 
 
 

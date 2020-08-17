@@ -72,3 +72,16 @@ exports.manageUser = (req, res) => {
 		}
 	});
 }
+
+// user info
+exports.userInfo = (req, res) => {
+	var query = Admin.getUser(req.params.id);
+	client.query(query, (err, result) => {
+		if (err) {
+			console.log(err.stack);
+		} else {
+			var info = result.rows[0];
+			res.render('info-user', { user: req.user, info: info });
+		}
+	});
+}
