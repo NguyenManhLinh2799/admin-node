@@ -54,6 +54,20 @@ class Admin {
             values: [parseInt(id, 10)]
         }
     }
+
+    static ban(id) {
+        return {
+            text: "UPDATE users SET isbanned = true WHERE id = $1",
+            values: [parseInt(id, 10)]
+        }
+    }
+
+    static unban(id) {
+        return {
+            text: "UPDATE users SET isbanned = false WHERE id = $1",
+            values: [parseInt(id, 10)]
+        }
+    }
 }
 
 module.exports = Admin;

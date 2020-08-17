@@ -86,3 +86,29 @@ exports.userInfo = (req, res) => {
 		}
 	});
 }
+
+// ban user
+exports.banUser = (req, res) => {
+	var query = Admin.ban(req.params.id);
+	client.query(query, (err, result) => {
+		if (err) {
+			console.log(err.stack);
+		} else {
+			req.flash('success_msg', 'Tài khoản đã bị khóa');
+			res.redirect('/info-user/' + req.params.id);
+		}
+	});
+}
+
+// unban user
+exports.unbanUser = (req, res) => {
+	var query = Admin.unban(req.params.id);
+	client.query(query, (err, result) => {
+		if (err) {
+			console.log(err.stack);
+		} else {
+			req.flash('success_msg', 'Tài khoản đã được mở khóa');
+			res.redirect('/info-user/' + req.params.id);
+		}
+	});
+}

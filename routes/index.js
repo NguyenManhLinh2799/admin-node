@@ -18,7 +18,7 @@ router.get('/profile', adminController.profile);
 router.post('/change-profile', adminController.changeProfile);
 //<h6 class="admin-name"><%= user.full_name %> <% if (user.issuper) { %>(Super Admin)<% } %></h6>
 /*
-<% if (user.issuper) { %>
+      <% if (user.issuper) { %>
       <li class="nav-item">
         <a class="nav-link" href="/manage-admin">
           <i class="fas fa-cogs"></i>
@@ -83,6 +83,12 @@ router.get('/manage-user', adminController.manageUser);
 
 // User info
 router.get('/info-user/:id', adminController.userInfo);
+
+// Ban user
+router.get('/ban-user/:id', adminController.banUser);
+
+// Unban user
+router.get('/unban-user/:id', adminController.unbanUser);
 
 
 

@@ -53,17 +53,21 @@
   <div class="col-3"></div>
   <div class="col-3 text-center">
     <% if (info.isbanned == false) { %>
-      <a href="#" class="btn btn-primary btn-lg disabled" tabindex="-1" role="button" aria-disabled="true">Mở khóa</a>
+      <a href="/unban-user/<%= info.id %>" class="btn btn-primary btn-lg disabled" tabindex="-1" role="button" aria-disabled="true">Mở khóa</a>
     <% } else { %>
-      <a href="#" class="btn btn-primary btn-lg" role="button">Mở khóa</a>
+      <a href="/unban-user/<%= info.id %>" class="btn btn-primary btn-lg" role="button">Mở khóa</a>
     <% } %>
   </div>
   <div class="col-3 text-center">
     <% if (info.isbanned == false) { %>
-      <a href="#" class="btn btn-danger btn-lg" role="button">Khóa</a>
+      <a href="/ban-user/<%= info.id %>" class="btn btn-danger btn-lg" role="button">Khóa</a>
     <% } else { %>
-      <a href="#" class="btn btn-danger btn-lg disabled" tabindex="-1" role="button" aria-disabled="true">Khóa</a>
+      <a href="/ban-user/<%= info.id %>" class="btn btn-danger btn-lg disabled" tabindex="-1" role="button" aria-disabled="true">Khóa</a>
     <% } %>
   </div>
   <div class="col-3"></div>
+</div>
+
+<div class="row">
+  <div class="col-4"><% include ./messages %></div>
 </div>
