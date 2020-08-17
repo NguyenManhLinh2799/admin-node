@@ -18,7 +18,7 @@ exports.logout = (req, res) => {
 
 // profile
 exports.profile = (req, res) => {
-	var admin = new Admin(req.user.id, req.user.username, req.user.password, req.user.fullname, req.user.email);
+	var admin = new Admin(req.user.id, req.user.username, req.user.password, req.user.full_name, req.user.email);
 	var query = admin.getProfile();
 	client.query(query, (err, result) => {
 		if (err) {
@@ -32,10 +32,10 @@ exports.profile = (req, res) => {
 
 // change profile
 exports.changeProfile = (req, res) => {
-	var fullname = req.body.fullname;
+	var full_name = req.body.full_name;
 	var email = req.body.email;
 	var username = req.body.username;
-	var query = Admin.changeProfile(fullname, email, username);
+	var query = Admin.changeProfile(full_name, email, username);
 	client.query(query, (err, result) => {
 		if (err) {
 			console.log(err.stack);
@@ -57,6 +57,18 @@ exports.changePassword = (req, res) => {
 		} else {
 			req.flash('success_msg', 'Đổi mật khẩu thành công');
 			res.redirect('/change-password');
+		}
+	});
+}
+
+// manage user
+exports.manageUser = (req, res) => {
+	var query = Admin.getUsers();
+	client.query(query, (err, result) => {
+		if (err) {
+			console.log(err.stack);
+		} else {
+			res.render('manage-user', { user: req.user, users: result.rows });
 		}
 	});
 }

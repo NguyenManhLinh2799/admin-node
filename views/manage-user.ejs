@@ -14,29 +14,15 @@
     </tr>
   </thead>
   <tbody>
-    <tr class='clickable-row' data-href='/info-user'>
-      <td>1</td>
-      <td>Nguyễn Văn A</td>
-      <td>nva</td>
-      <td>nva@gmail.com</td>
+    <% for (var i = 0; i < users.length; i++) { %>
+    <tr class='clickable-row' data-href='/info-user/<%= users[i].id %>'>
+      <td><%= users[i].id %></td>
+      <td><%= users[i].full_name %></td>
+      <td><%= users[i].username %></td>
+      <td><%= users[i].email %></td>
       <td>1,000</td>
-      <td>Chưa khóa</td>
+      <td><% if (users[i].isbanned == false) { %>Chưa khóa<% } else { %>Đã khóa<% } %></td>
     </tr>
-    <tr>
-      <td>2</td>
-      <td>Nguyễn Thị B</td>
-      <td>ntb</td>
-      <td>ntb@gmail.com</td>
-      <td>1,000</td>
-      <td>Chưa khóa</td>
-    </tr>
-    <tr>
-      <td>3</td>
-      <td>Nguyễn Văn C</td>
-      <td>nvc</td>
-      <td>nvc@gmail.com</td>
-      <td>1,000</td>
-      <td>Chưa khóa</td>
-    </tr>
+    <% } %>
   </tbody>
 </table>

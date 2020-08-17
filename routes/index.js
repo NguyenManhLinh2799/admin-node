@@ -45,8 +45,6 @@ router.get('/forget-password', (req, res) => {
   res.render('forget-password', { layout: 'auth-layout' });
 });
 
-
-
 // Reset password
 router.get('/reset-password', (req, res) => {
   res.render('reset-password', { layout: 'auth-layout' });
@@ -72,14 +70,14 @@ router.get('/stat-note', (req, res) => {
 
 
 // User manage
-router.get('/manage-user', (req, res) => {
-  res.render('manage-user');
-});
+router.get('/manage-user', adminController.manageUser);
 
 // User info
 router.get('/info-user', (req, res) => {
   res.render('info-user');
 });
+
+
 
 // Admin manage
 router.get('/manage-admin', superAdminController.manageAdmin);

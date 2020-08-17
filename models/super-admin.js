@@ -4,7 +4,7 @@ const Admin = require('./admin');
 class SuperAdmin extends Admin {
     static getAdmin() {
         return {
-            text: 'SELECT * FROM admin WHERE issuper = false'
+            text: 'SELECT * FROM admins WHERE issuper = false'
         }
     }
 }

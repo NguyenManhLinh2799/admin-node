@@ -15,7 +15,7 @@ module.exports = (passport) => {
                     id: first.id,
                     username: first.username,
                     password: first.password,
-                    fullname: first.fullname,
+                    full_name: first.full_name,
                     email: first.email,
                     issuper: first.issuper
                 });
@@ -28,7 +28,7 @@ module.exports = (passport) => {
     })
 
     passport.deserializeUser((id, cb) => {
-        client.query('SELECT * FROM admin WHERE id = $1', [parseInt(id, 10)], (err, results) => {
+        client.query('SELECT * FROM admins WHERE id = $1', [parseInt(id, 10)], (err, results) => {
             if (err) {
                 return cb(err)
             }
