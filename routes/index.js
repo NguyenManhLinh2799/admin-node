@@ -16,7 +16,16 @@ router.get('/profile', adminController.profile);
 
 // Change profile
 router.post('/change-profile', adminController.changeProfile);
-//<h6 class="admin-name"><%= user.fullname %> <% if (user.issuper) { %>(Super Admin)<% } %></h6>
+//<h6 class="admin-name"><%= user.full_name %> <% if (user.issuper) { %>(Super Admin)<% } %></h6>
+/*
+<% if (user.issuper) { %>
+      <li class="nav-item">
+        <a class="nav-link" href="/manage-admin">
+          <i class="fas fa-cogs"></i>
+          <span>Quản lý Admin</span></a>
+      </li>
+      <% } %>
+*/
 
 
 

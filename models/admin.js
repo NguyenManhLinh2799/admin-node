@@ -39,13 +39,18 @@ class Admin {
 
     static getUsers() {
         return {
-            text: 'SELECT * FROM users',
+            text: 'SELECT users.*, COUNT(*) AS count_note'+
+            ' FROM users INNER JOIN usernote ON users.id = usernote."user"'+
+            ' GROUP BY users.id'
         }
     }
 
     static getUser(id) {
         return {
-            text: 'SELECT * FROM users WHERE id = $1',
+            text: 'SELECT users.*, COUNT(*) AS count_note'+
+            ' FROM users INNER JOIN usernote ON users.id = usernote."user"'+
+            ' WHERE users.id = $1'+
+            ' GROUP BY users.id',
             values: [parseInt(id, 10)]
         }
     }

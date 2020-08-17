@@ -20,7 +20,7 @@
       <td><%= users[i].full_name %></td>
       <td><%= users[i].username %></td>
       <td><%= users[i].email %></td>
-      <td>1,000</td>
+      <td><%= users[i].count_note %></td>
       <td><% if (users[i].isbanned == false) { %>Chưa khóa<% } else { %>Đã khóa<% } %></td>
     </tr>
     <% } %>

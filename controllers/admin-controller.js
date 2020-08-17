@@ -4,16 +4,16 @@ const client = require('../db');
 
 // login
 exports.login = (req, res, next) => {
-    passport.authenticate('local', {
-        successRedirect: '/',
-        failureRedirect: '/login',
-    })(req, res, next);
+	passport.authenticate('local', {
+		successRedirect: '/',
+		failureRedirect: '/login',
+	})(req, res, next);
 }
 
 // logout
 exports.logout = (req, res) => {
-    req.logout();
-    res.redirect('/login');
+	req.logout();
+	res.redirect('/login');
 }
 
 // profile
@@ -68,7 +68,8 @@ exports.manageUser = (req, res) => {
 		if (err) {
 			console.log(err.stack);
 		} else {
-			res.render('manage-user', { user: req.user, users: result.rows });
+			var users = result.rows;
+			res.render('manage-user', { user: req.user, users: users });
 		}
 	});
 }
