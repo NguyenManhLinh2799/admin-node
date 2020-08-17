@@ -97,7 +97,10 @@ router.get('/manage-admin', superAdminController.manageAdmin);
 
 // Create admin
 router.get('/create-admin', (req, res) => {
-  res.render('create-admin');
+  res.render('create-admin', { user: req.user });
 });
+
+// Create admin handle
+router.post('/create-admin', superAdminController.createAdmin);
 
 module.exports = router;

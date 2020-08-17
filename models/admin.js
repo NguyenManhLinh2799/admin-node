@@ -1,12 +1,13 @@
 const client = require('../db');
 
 class Admin {
-    constructor(id, username, password, full_name, email) {
+    constructor(id, full_name, username, email, password) {
         this.id = parseInt(id, 10);
-        this.username = username;
-        this.password = password;
         this.full_name = full_name;
+        this.username = username;
         this.email = email;
+        this.password = password;
+        this.issuper = false;
     }
 
     static login(username) {
