@@ -70,9 +70,7 @@ router.get('/logout', adminController.logout);
 router.get('/stats-user', adminController.userStats);
 
 // Note stat
-router.get('/stat-note', (req, res) => {
-  res.render('stat-note');
-});
+router.get('/stats-note', adminController.noteStats);
 
 
 

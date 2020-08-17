@@ -76,6 +76,13 @@ class Admin {
             ' FROM users GROUP BY created_at ORDER BY created_at'
         }
     }
+
+    static getNoteStats() {
+        return {
+            text: 'SELECT created_at, COUNT(id) as count_note'+
+            ' FROM notes GROUP BY created_at ORDER BY created_at'
+        }
+    }
 }
 
 module.exports = Admin;

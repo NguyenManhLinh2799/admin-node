@@ -139,3 +139,30 @@ exports.userStats = (req, res) => {
 		}
 	});
 }
+
+// note stats
+exports.noteStats = (req, res) => {
+	var query = Admin.getNoteStats();
+	client.query(query, (err, result) => {
+		if (err) {
+			console.log(err.stack);
+		} else {
+			// Convert timestamp to formatted date
+			for (var i = 0; i < result.rows.length; i++) {
+				var date = new Date(result.rows[i].created_at);
+				var formattedDate = date.getDate() + '/' + parseInt(date.getMonth()+1) + '/' + date.getFullYear();
+				result.rows[i].created_at = formattedDate;
+			}
+
+			// Sum note each row incremental
+			var sum = 0;
+			for (var i = 0; i < result.rows.length; i++) {
+				sum += parseInt(result.rows[i].count_note);
+				result.rows[i].sum = sum;
+			}
+
+			var stats = result.rows;
+			res.render('stats-note', { user: req.user, stats: stats })
+		}
+	});
+}

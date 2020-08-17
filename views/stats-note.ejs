@@ -1,16 +1,15 @@
-
 <!-- total -->
 <div class="total">
   <h2>Tổng số note:</h2>
-  <h1>999,999,999</h1>
+  <h1><%= stats[stats.length-1].sum %></h1>
 </div>
 
 <div>
   <form action="">
     Số note mới theo:
     <select class="custom-select time-select">
-      <option value="day">Ngày</option>
-      <option value="month" selected>Tháng</option>
+      <option value="day" selected>Ngày</option>
+      <option value="month">Tháng</option>
       <option value="year">Năm</option>
     </select>
     <button type="submit" class="btn btn-primary">Lọc</button>
@@ -19,6 +18,11 @@
 
 <!-- chart -->
 <canvas id="chart"></canvas>
+
+<input type="text" id="labels" value="<% for (var i = 0; i < stats.length; i++) {%><%= stats[i].created_at %>,<% } %>"
+  hidden>
+<input type="text" id="data" value="<% for (var i = 0; i < stats.length; i++) {%><%= stats[i].count_note %>,<% } %>"
+  hidden>
 
 <hr>
 
@@ -34,21 +38,13 @@
     </tr>
   </thead>
   <tbody>
+    <% for (var i = 0; i < stats.length; i++) {%>
     <tr>
-      <td>01/2020</td>
-      <td>1,000</td>
-      <td>999,999,999</td>
+      <td><%= stats[i].created_at %></td>
+      <td><%= stats[i].count_note %></td>
+      <td><%= stats[i].sum %></td>
     </tr>
-    <tr>
-      <td>02/2020</td>
-      <td>1,000</td>
-      <td>999,999,999</td>
-    </tr>
-    <tr>
-      <td>03/2020</td>
-      <td>1,000</td>
-      <td>999,999,999</td>
-    </tr>
+    <% } %>
   </tbody>
 </table>
 
