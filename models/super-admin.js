@@ -15,6 +15,13 @@ class SuperAdmin extends Admin {
             values: [full_name, username, email, password, false]
         }
     }
+
+    static deleteAdmin(id) {
+        return {
+            text: 'DELETE FROM admins WHERE id = $1',
+            values: [parseInt(id, 10)]
+        }
+    }
 }
 
 module.exports = SuperAdmin;

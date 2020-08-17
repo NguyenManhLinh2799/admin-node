@@ -8,7 +8,8 @@ exports.manageAdmin = (req, res) => {
 		if (err) {
 			console.log(err.stack);
 		} else {
-			res.render('manage-admin', { user: req.user, admins: result.rows });
+			var admins = result.rows;
+			res.render('manage-admin', { user: req.user, admins: admins });
 		}
 	});
 }
@@ -22,6 +23,18 @@ exports.createAdmin = (req, res) => {
 		} else {
 			req.flash('success_msg', 'Tạo Admin thành công');
 			res.redirect('/create-admin');
+		}
+	});
+}
+
+// delete admin
+exports.deleteAdmin = (req, res) => {
+	var query = SuperAdmin.deleteAdmin(req.params.id);
+	client.query(query, (err, result) => {
+		if (err) {
+			console.log(err.stack);
+		} else {
+			res.redirect('/manage-admin');
 		}
 	});
 }

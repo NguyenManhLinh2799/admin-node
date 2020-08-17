@@ -103,4 +103,7 @@ router.get('/create-admin', (req, res) => {
 // Create admin handle
 router.post('/create-admin', superAdminController.createAdmin);
 
+// Delete admin
+router.get('/delete-admin/:id', superAdminController.deleteAdmin);
+
 module.exports = router;

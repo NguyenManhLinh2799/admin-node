@@ -19,19 +19,20 @@
       <td><%= admins[i].full_name %></td>
       <td><%= admins[i].username %></td>
       <td><%= admins[i].email %></td>
-      <td><a class="btn btn-danger" href="#" role="button" data-toggle="modal" data-target="#logoutModal">Xóa</a></td>
+      <td><a class="btn btn-danger" href="#" role="button" data-toggle="modal" data-target="#delete<%= admins[i].id %>">Xóa</a></td>
     </tr>
     <% } %>
   </tbody>
 </table>
 
-<!-- Remove Admin Modal-->
-<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<!-- Delete Admin Modals -->
+<% for (var i = 0; i < admins.length; i++) { %>
+<div class="modal fade" id="delete<%= admins[i].id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Bạn chuẩn bị xóa 1 Admin</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Bạn chuẩn bị xóa Admin mã số: <%= admins[i].id %></h5>
         <button class="close" type="button" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>
         </button>
@@ -39,8 +40,9 @@
       <div class="modal-body">Bạn có chắc chắn muốn xóa Admin này không?</div>
       <div class="modal-footer">
         <button class="btn btn-secondary" type="button" data-dismiss="modal">Hủy bỏ</button>
-        <a class="btn btn-primary" href="#">Xác nhận</a>
+        <a class="btn btn-primary" href="/delete-admin/<%= admins[i].id %>">Xác nhận</a>
       </div>
     </div>
   </div>
 </div>
+<% } %>
