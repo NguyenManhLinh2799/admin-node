@@ -45,3 +45,18 @@ exports.changeProfile = (req, res) => {
 		}
 	});
 }
+
+// change password
+exports.changePassword = (req, res) => {
+	var newPassword = req.body.new;
+	var id = req.user.id;
+	var query = Admin.changePassword(newPassword, id);
+	client.query(query, (err, result) => {
+		if (err) {
+			console.log(err.stack);
+		} else {
+			req.flash('success_msg', 'Đổi mật khẩu thành công');
+			res.redirect('/change-password');
+		}
+	});
+}

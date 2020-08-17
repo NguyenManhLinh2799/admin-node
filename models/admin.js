@@ -29,6 +29,13 @@ class Admin {
             values: [fullname, email, username]
         }
     }
+
+    static changePassword(newPassword, id) {
+        return {
+            text: 'UPDATE admin SET password = $1 WHERE id = $2',
+            values: [newPassword, parseInt(id, 10)]
+        }
+    }
 }
 
 module.exports = Admin;

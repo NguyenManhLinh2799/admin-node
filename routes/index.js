@@ -22,8 +22,11 @@ router.post('/change-profile', adminController.changeProfile);
 
 // Change password
 router.get('/change-password', (req, res) => {
-  res.render('change-password');
+  res.render('change-password', { user: req.user });
 });
+
+// Change password handle
+router.post('/change-password', adminController.changePassword);
 
 
 
