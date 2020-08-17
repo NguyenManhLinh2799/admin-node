@@ -69,6 +69,13 @@ class Admin {
             values: [parseInt(id, 10)]
         }
     }
+
+    static getUserStats() {
+        return {
+            text: 'SELECT created_at, COUNT(id) as count_user'+
+            ' FROM users GROUP BY created_at ORDER BY created_at'
+        }
+    }
 }
 
 module.exports = Admin;

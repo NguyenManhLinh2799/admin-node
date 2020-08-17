@@ -66,10 +66,8 @@ router.get('/logout', adminController.logout);
 
 
 
-// User stat
-router.get('/stat-user', (req, res) => {
-  res.render('stat-user');
-});
+// User stats
+router.get('/stats-user', adminController.userStats);
 
 // Note stat
 router.get('/stat-note', (req, res) => {
