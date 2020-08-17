@@ -1,10 +1,12 @@
 const LocalStrategy = require('passport-local').Strategy;
+const Admin = require('../models/admin');
 const client = require('../db');
 client.connect();
 
 module.exports = (passport) => {
     passport.use(new LocalStrategy((username, password, cb) => {
-        client.query('SELECT * FROM admin WHERE username = $1', [username], (err, result) => {
+        var query = Admin.login(username);
+        client.query(query, (err, result) => {
             if (err) {
                 return cb(err)
             } else {

@@ -5,7 +5,7 @@ const adminController = require('../controllers/admin-controller');
 const superAdminController = require('../controllers/super-admin-controller');
 
 /* GET home page. */
-router.get('/', ensureAuthenticated, function(req, res, next) {
+router.get('/', ensureAuthenticated, (req, res) => {
   res.render('index', { user: req.user });
 });
 

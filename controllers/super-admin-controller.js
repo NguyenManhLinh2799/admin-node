@@ -1,12 +1,14 @@
+const SuperAdmin = require('../models/super-admin');
 const client = require('../db');
 
 // manage admin
 exports.manageAdmin = (req, res) => {
-	client.query('SELECT * FROM admin WHERE issuper = false', (err, result) => {
+	var query = SuperAdmin.getAdmin();
+	client.query(query, (err, result) => {
 		if (err) {
 			console.log(err.stack);
 		} else {
-			res.render('manage-admin', { admins: result.rows });
+			res.render('manage-admin', { user: req.user, admins: result.rows });
 		}
 	});
 }
