@@ -70,10 +70,13 @@ router.get('/logout', adminController.logout);
 router.get('/stats-user', adminController.userStats);
 
 // User stats handle
-router.post('/stats-user', adminController.userStatsHandle)
+router.post('/stats-user', adminController.userStatsHandle);
 
 // Note stat
 router.get('/stats-note', adminController.noteStats);
+
+// Note stats handle
+router.post('/stats-note', adminController.noteStatsHandle);
 
 
 

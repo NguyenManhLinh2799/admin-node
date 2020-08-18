@@ -152,27 +152,37 @@ exports.userStatsHandle = (req, res) => {
 
 // note stats
 exports.noteStats = (req, res) => {
-	var query = Admin.getNoteStats();
+	var query = Admin.getNoteStats(req.query.by);
 	client.query(query, (err, result) => {
 		if (err) {
 			console.log(err.stack);
 		} else {
-			// Convert timestamp to formatted date
-			for (var i = 0; i < result.rows.length; i++) {
-				var date = new Date(result.rows[i].created_at);
-				var formattedDate = date.getDate() + '/' + parseInt(date.getMonth()+1) + '/' + date.getFullYear();
-				result.rows[i].created_at = formattedDate;
-			}
-
-			// Sum note each row incremental
+			var stats = [];
 			var sum = 0;
 			for (var i = 0; i < result.rows.length; i++) {
+				var stat = {}
+				// Group by
+				if (req.query.by == 'year') {
+					stat.time = result.rows[i].yy;
+				} else if (req.query.by == 'month') {
+					stat.time = result.rows[i].mm + '/' + result.rows[i].yy;
+				} else {
+					stat.time = result.rows[i].dd + '/' + result.rows[i].mm + '/' + result.rows[i].yy;
+				}
+				// Count note
+				stat.count_note = result.rows[i].count_note;
+				// Sum note incremental
 				sum += parseInt(result.rows[i].count_note);
-				result.rows[i].sum = sum;
+				stat.sum = sum;
+				// Push
+				stats.push(stat);
 			}
-
-			var stats = result.rows;
-			res.render('stats-note', { user: req.user, stats: stats })
+			res.render('stats-note', { user: req.user, stats: stats, by: req.query.by });
 		}
 	});
+}
+
+// note stats handle
+exports.noteStatsHandle = (req, res) => {
+	res.redirect('/stats-note?by=' + req.body.by);
 }
