@@ -115,29 +115,39 @@ exports.unbanUser = (req, res) => {
 
 // user stats
 exports.userStats = (req, res) => {
-	var query = Admin.getUserStats();
+	var query = Admin.getUserStats(req.query.by);
 	client.query(query, (err, result) => {
 		if (err) {
 			console.log(err.stack);
 		} else {
-			// Convert timestamp to formatted date
-			for (var i = 0; i < result.rows.length; i++) {
-				var date = new Date(result.rows[i].created_at);
-				var formattedDate = date.getDate() + '/' + parseInt(date.getMonth()+1) + '/' + date.getFullYear();
-				result.rows[i].created_at = formattedDate;
-			}
-
-			// Sum user each row incremental
+			var stats = [];
 			var sum = 0;
 			for (var i = 0; i < result.rows.length; i++) {
+				var stat = {}
+				// Group by
+				if (req.query.by == 'year') {
+					stat.time = result.rows[i].yy;
+				} else if (req.query.by == 'month') {
+					stat.time = result.rows[i].mm + '/' + result.rows[i].yy;
+				} else {
+					stat.time = result.rows[i].dd + '/' + result.rows[i].mm + '/' + result.rows[i].yy;
+				}
+				// Count user
+				stat.count_user = result.rows[i].count_user;
+				// Sum user incremental
 				sum += parseInt(result.rows[i].count_user);
-				result.rows[i].sum = sum;
+				stat.sum = sum;
+				// Push
+				stats.push(stat);
 			}
-
-			var stats = result.rows;
-			res.render('stats-user', { user: req.user, stats: stats })
+			res.render('stats-user', { user: req.user, stats: stats, by: req.query.by });
 		}
 	});
+}
+
+// user stats handle
+exports.userStatsHandle = (req, res) => {
+	res.redirect('/stats-user?by=' + req.body.by);
 }
 
 // note stats

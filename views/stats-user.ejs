@@ -5,12 +5,12 @@
 </div>
 
 <div>
-  <form action="">
+  <form action="/stats-user" method="POST">
     Số lượt đăng ký mới theo:
-    <select class="custom-select time-select">
-      <option value="day" selected>Ngày</option>
-      <option value="month">Tháng</option>
-      <option value="year">Năm</option>
+    <select class="custom-select time-select" id="by" name="by">
+      <option value="day" <% if (by == 'day') { %>selected<% } %>>Ngày</option>
+      <option value="month" <% if (by == 'month') { %>selected<% } %>>Tháng</option>
+      <option value="year" <% if (by == 'year') { %>selected<% } %>>Năm</option>
     </select>
     <button type="submit" class="btn btn-primary">Lọc</button>
   </form>
@@ -20,7 +20,7 @@
 <canvas id="chart"></canvas>
 
 <input type="text" id="labels"
-  value="<% for (var i = 0; i < stats.length; i++) {%><%= stats[i].created_at %>,<% } %>"
+  value="<% for (var i = 0; i < stats.length; i++) {%><%= stats[i].time %>,<% } %>"
   hidden>
 <input type="text" id="data"
   value="<% for (var i = 0; i < stats.length; i++) {%><%= stats[i].count_user %>,<% } %>"
@@ -42,7 +42,7 @@
   <tbody>
     <% for (var i = 0; i < stats.length; i++) {%>
     <tr>
-      <td><%= stats[i].created_at %></td>
+      <td><%= stats[i].time %></td>
       <td><%= stats[i].count_user %></td>
       <td><%= stats[i].sum %></td>
     </tr>

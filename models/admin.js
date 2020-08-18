@@ -70,10 +70,22 @@ class Admin {
         }
     }
 
-    static getUserStats() {
+    static getUserStats(by) {
+        var select = 'EXTRACT(YEAR FROM created_at) AS yy';
+        var groupBy = 'yy';
+
+        if (by == 'month') {
+            select += ',EXTRACT(MONTH FROM created_at) AS mm';
+            groupBy += ',mm';
+        } else if (by == 'day') {
+            select += ',EXTRACT(MONTH FROM created_at) AS mm,EXTRACT(DAY FROM created_at) AS dd';
+            groupBy += ',mm,dd';
+        }
+
+        select += ',COUNT(id) AS count_user';
+
         return {
-            text: 'SELECT created_at, COUNT(id) as count_user'+
-            ' FROM users GROUP BY created_at ORDER BY created_at'
+            text: 'SELECT ' + select + ' FROM users GROUP BY ' + groupBy + ' ORDER BY ' + groupBy
         }
     }
 

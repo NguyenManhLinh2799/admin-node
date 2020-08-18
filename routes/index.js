@@ -69,6 +69,9 @@ router.get('/logout', adminController.logout);
 // User stats
 router.get('/stats-user', adminController.userStats);
 
+// User stats handle
+router.post('/stats-user', adminController.userStatsHandle)
+
 // Note stat
 router.get('/stats-note', adminController.noteStats);
 
